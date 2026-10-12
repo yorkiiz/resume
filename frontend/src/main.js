@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import App from './App.vue'
 import './style.css'
 
@@ -8,11 +8,11 @@ import ProjectDetail from './views/ProjectDetail.vue'
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/project/:id', component: ProjectDetail }
+  { path: '/project/:id', component: ProjectDetail },
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
@@ -20,7 +20,7 @@ const router = createRouter({
     } else {
       return { top: 0 }
     }
-  }
+  },
 })
 
 const app = createApp(App)
