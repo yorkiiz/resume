@@ -76,13 +76,13 @@
         <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">关于我</h2>
         <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
           <p class="text-gray-600 leading-relaxed text-lg mb-4">
-            [2023~2026：上海华为研发中心:无线大数据部分，Java微服务和spark scala开发]
+            2023 ~ 2026　上海华为研发中心 · 无线大数据部门　Java 微服务与 Spark / Scala 开发
           </p>
           <p class="text-gray-600 leading-relaxed text-lg mb-4">
-            [2021~2023：上海海发宝城公司:金融租赁业务系统，Java后端开发]
+            2021 ~ 2023　上海海发宝城公司 · 金融租赁业务系统　Java 后端开发
           </p>
           <p class="text-gray-600 leading-relaxed text-lg">
-            [2017~2021：上海和辉光电: 半导体自动化部门，MES系统C++和Java开发]
+            2017 ~ 2021　上海和辉光电 · 半导体自动化部门　MES 系统 C++ / Java 开发
           </p>
         </div>
       </div>
@@ -97,20 +97,20 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-lg transition text-center">
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">[Java后端开发]</h3>
-            <p class="text-gray-500 text-sm">[springCloud及相关应用:nacos,openFeign,Gateway,setinel等]</p>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Java 后端开发</h3>
+            <p class="text-gray-500 text-sm">Spring Cloud 及生态：Nacos、OpenFeign、Gateway、Sentinel</p>
           </div>
           <div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-lg transition text-center">
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">[Spark scla大数据开发]</h3>
-            <p class="text-gray-500 text-sm">[scala编程,Hive,HDFS;spark资源调优，数据倾斜处理，任务调度原理]</p>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Spark / Scala 大数据开发</h3>
+            <p class="text-gray-500 text-sm">Scala 编程、Hive、HDFS；Spark 资源调优、数据倾斜处理、任务调度原理</p>
           </div>
           <div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-lg transition text-center">
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">[K8s运维管理]</h3>
-            <p class="text-gray-500 text-sm">[容器化应用发布与运维，修改dockerfile，定位pod crash]</p>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Kubernetes 运维</h3>
+            <p class="text-gray-500 text-sm">容器化应用发布与运维，编写 Dockerfile，定位 Pod 异常与集群网络问题</p>
           </div>
           <div class="bg-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-lg transition text-center">
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">[AI应用开发]</h3>
-            <p class="text-gray-500 text-sm">[RAG 检索增强生成，LangChain，向量数据库]</p>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">AI 应用开发</h3>
+            <p class="text-gray-500 text-sm">RAG 检索增强生成、LangChain、向量数据库</p>
           </div>
         </div>
       </div>
@@ -123,26 +123,36 @@
           <h2 class="text-3xl font-bold text-gray-800">精选作品</h2>
           <p class="text-gray-500 mt-2">代表性项目案例</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 gap-6">
           <router-link
               v-for="project in projects"
               :key="project.id"
               :to="`/project/${project.id}`"
-              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition"
+              class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 border border-gray-100 md:flex"
           >
-            <div :class="`h-48 ${project.bgColor} flex items-center justify-center`">
-              <span class="text-6xl text-white font-bold">{{ project.title.charAt(0) }}</span>
+            <div :class="`md:w-2/5 h-44 md:h-auto p-6 flex flex-col justify-between relative overflow-hidden ${project.bgColor}`">
+              <div class="absolute inset-0 opacity-[0.15]"
+                   style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 18px 18px;"></div>
+              <span class="relative text-white/90 text-sm font-medium tracking-wide">{{ project.kicker }}</span>
+              <div class="relative flex flex-wrap gap-2">
+                <span v-for="t in project.tags" :key="t"
+                      class="px-2.5 py-1 bg-white/20 backdrop-blur-sm text-white text-xs rounded-md border border-white/30">
+                  {{ t }}
+                </span>
+              </div>
             </div>
-            <div class="p-4">
-              <h3 class="text-lg font-semibold text-gray-800 mb-1">{{ project.title }}</h3>
-              <p class="text-gray-500 text-sm">{{ project.category }} · {{ project.year }}</p>
+            <div class="md:w-3/5 p-7 flex flex-col">
+              <div class="flex items-start justify-between gap-4 mb-2">
+                <h3 class="text-xl font-bold text-gray-800">{{ project.title }}</h3>
+                <span class="text-xs text-gray-400 whitespace-nowrap mt-1">{{ project.year }}</span>
+              </div>
+              <p class="text-gray-500 text-sm mb-3">{{ project.category }}</p>
+              <p class="text-gray-600 text-sm leading-relaxed flex-1">{{ project.summary }}</p>
+              <span class="mt-5 text-sm text-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                查看详情 <span>→</span>
+              </span>
             </div>
           </router-link>
-        </div>
-        <div class="text-center mt-8">
-          <a href="#" class="inline-block px-6 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition shadow-md">
-            查看更多作品
-          </a>
         </div>
       </div>
     </section>
@@ -207,9 +217,9 @@
         <div class="max-w-2xl mx-auto">
           <div class="bg-white rounded-xl p-6 shadow-sm border-l-4 border-primary">
             <div class="text-sm text-gray-400 mb-1">🎓 教育背景</div>
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">[学校名称：浙江大学]</h3>
-            <p class="text-gray-600 text-sm mb-1">[专业：机械工程及其自动化] · [学历：本科]</p>
-            <p class="text-gray-500 text-xs">[起止年份：2013.09-2017.07]</p>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">浙江大学</h3>
+            <p class="text-gray-600 text-sm mb-1">机械工程及其自动化 · 本科</p>
+            <p class="text-gray-500 text-xs">2013.09 – 2017.07</p>
           </div>
           <!-- 专业认证（暂未启用） -->
           <!--
@@ -240,13 +250,13 @@
         <p class="text-gray-500 mb-8">商务合作 / 项目咨询 / 人才招募</p>
         <div class="flex flex-wrap justify-center gap-6 mb-8">
           <a href="mailto:297555475@qq.com" class="flex items-center gap-2 text-gray-600 hover:text-primary transition">
-            <span>[邮箱：297555475@qq.com]</span>
+            <span>297555475@qq.com</span>
           </a>
           <a href="tel:18868128829" class="flex items-center gap-2 text-gray-600 hover:text-primary transition">
-            <span>[电话：18868128829]</span>
+            <span>18868128829</span>
           </a>
           <span class="flex items-center gap-2 text-gray-600">
-            <span>[地址：上海青浦区]</span>
+            <span>上海 · 青浦区</span>
           </span>
         </div>
         <a href="mailto:297555475@qq.com" class="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-secondary transition shadow-md">
@@ -261,9 +271,9 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <div class="flex items-center gap-2 mb-3">
-              <span class="text-lg font-bold">[章永杰]</span>
+              <span class="text-lg font-bold">章永杰</span>
             </div>
-            <p class="text-gray-400 text-sm">[程序员]<br>[Java后端开发]</p>
+            <p class="text-gray-400 text-sm">软件开发工程师<br>Java 后端开发</p>
           </div>
           <div>
             <h4 class="font-semibold mb-3">导航</h4>
@@ -311,45 +321,15 @@ import { ref } from 'vue'
 const projects = ref([
   {
     id: 'mall',
-    title: '[项目1名称：电子商城]',
-    category: '[项目1分类：电子商城]',
-    year: '[项目1年份：2026]',
+    title: '电子商城系统',
+    kicker: '个人项目',
+    category: 'Spring Boot + Vue 3 · 自建 Kubernetes 集群部署',
+    year: '2026.08 – 2026.10',
+    summary: '一套完整的前后端分离电商系统，覆盖商品、购物车、下单与用户中心。' +
+        '不只是本地跑通：MySQL / Redis / RabbitMQ 与前后端服务全部容器化，部署在自建的 3 节点 Kubernetes 集群上，' +
+        '过程中定位并解决了跨节点网络不通、调度策略死锁、挂载失效等多类故障。',
+    tags: ['Spring Boot', 'Vue 3', 'Kubernetes'],
     bgColor: 'bg-gradient-to-br from-blue-500 to-cyan-400',
-  },
-  {
-    id: 'mall',
-    title: '[待替换：项目2名称]',
-    category: '[待替换：项目2分类]',
-    year: '[待替换：项目2年份]',
-    bgColor: 'bg-gradient-to-br from-orange-400 to-pink-500',
-  },
-  {
-    id: 'blog',
-    title: '[待替换：项目3名称]',
-    category: '[待替换：项目3分类]',
-    year: '[待替换：项目3年份]',
-    bgColor: 'bg-gradient-to-br from-green-400 to-emerald-500',
-  },
-  {
-    id: 'dashboard',
-    title: '[待替换：项目4名称]',
-    category: '[待替换：项目4分类]',
-    year: '[待替换：项目4年份]',
-    bgColor: 'bg-gradient-to-br from-purple-400 to-pink-400',
-  },
-  {
-    id: 'wechat',
-    title: '[待替换：项目5名称]',
-    category: '[待替换：项目5分类]',
-    year: '[待替换：项目5年份]',
-    bgColor: 'bg-gradient-to-br from-yellow-400 to-orange-400',
-  },
-  {
-    id: 'api',
-    title: '[待替换：项目6名称]',
-    category: '[待替换：项目6分类]',
-    year: '[待替换：项目6年份]',
-    bgColor: 'bg-gradient-to-br from-pink-400 to-rose-400',
   },
 ])
 
